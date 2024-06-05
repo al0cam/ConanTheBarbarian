@@ -36,12 +36,12 @@ function resetOpacity() {
 </script>
 
 <!-- Tailwind to apply a class to all descendants of an element add [&_*]
-  if only first children then [&>*]
-  if specific element then [&_p] -->
+    if only first children then [&>*]
+    if specific element then [&_p] -->
 <main id="menu" class="m-0 h-screen flex gap-4 items-center">
   <div id="items" class="flex flex-col gap-5 [&_*]:hover:opacity-25" on:mouseleave={() => resetOpacity()}>
     {#each items as item}
-        <div class="transition ease-in-out duration-200 text-5xl hover:!opacity-100" on:mouseover={()=> changeOpactiy(item)}>{item.text}</div>
+        <div class="transition ml-36 ease-in-out duration-200 text-5xl hover:!opacity-100 hover:scale-125" on:mouseover={()=> changeOpactiy(item)}>{item.text}</div>
     {/each}
   </div>
 </main>
