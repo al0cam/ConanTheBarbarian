@@ -1,36 +1,41 @@
 <script lang="ts">
-
+  import conan from './assets/defaultImage.jpeg';
+  import crushTheEnemies from './assets/crushTheEnemies.jpg';
+  import drivenBeforeYou from './assets/drivenBeforeYou.jpg';
+  import lamentationOfWomen from './assets/lamentationOfWomen.jpg';
 type Item = {
   id: number,
   text: string,
+  imageURL?: string
 }
 
-// TODO: add base css classes for the items
-// TODO: add change of color on items that arent hovered while one is
-// TODO: add animations to the items
-// TODO: add background images
+let defaultImageURL = conan;
+let activeImage = defaultImageURL;
 
 let items: Item[] = [
   {
     id: 1,
     text: "To crush your enemies,",
+    imageURL: crushTheEnemies,
   },
   {
     id: 2,
     text: "see them driven before you,",
+    imageURL: drivenBeforeYou,
   },
   {
     id: 3,
     text: "and to hear the lamenetation of their women!",
+    imageURL: lamentationOfWomen,
   }
 ]
 
-function changeOpactiy(item: Item){
-
+function changeBackgroundImage(item: Item){
+  activeImage = item.imageURL || defaultImageURL;
 }
 
-function resetOpacity() {
-
+function resetBackgroundImage() {
+  activeImage = defaultImageURL;
 }
 
 </script>
@@ -39,9 +44,10 @@ function resetOpacity() {
     if only first children then [&>*]
     if specific element then [&_p] -->
 <main id="menu" class="m-0 h-screen flex gap-4 items-center">
-  <div id="items" class="flex flex-col gap-5 [&_*]:hover:opacity-25" on:mouseleave={() => resetOpacity()}>
+  <div id="items" class="flex flex-col gap-5 [&_*]:hover:opacity-25 z-10" on:mouseleave={() => resetBackgroundImage()}>
     {#each items as item}
-        <div class="transition ml-36 ease-in-out duration-200 text-5xl hover:!opacity-100 hover:scale-125" on:mouseover={()=> changeOpactiy(item)}>{item.text}</div>
+        <div class="transition ml-36 ease-in-out duration-200 text-5xl hover:!opacity-100 hover:scale-125" on:mouseover={()=> changeBackgroundImage(item)}>{item.text}</div>
     {/each}
   </div>
+  <img class="absolute bg-cover bg-center top-0 left-0 z-0 opacity-20" src={activeImage} alt="Default Image" />
 </main>
