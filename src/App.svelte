@@ -49,5 +49,8 @@ function resetBackgroundImage() {
         <div class="transition ml-36 ease-in-out duration-200 text-6xl hover:!opacity-100 cursor-pointer" on:mouseover={()=> changeBackgroundImage(item)}>{item.text}</div>
     {/each}
   </div>
-  <img class="absolute bg-cover bg-center top-0 left-0 z-0 opacity-20 object-cover h-screen w-screen" src={activeImage} alt="Default Image" />
+  <img class="absolute bg-cover bg-center top-0 left-0 z-0 opacity-20 object-cover object-top h-screen w-screen" src={activeImage} alt="Default Image" />
 </main>
+
+<!-- https://css-tricks.com/on-object-fit-and-object-position/
+  good document describing how the position viewport changes-->
